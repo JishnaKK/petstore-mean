@@ -1,0 +1,55 @@
+<!-- NavBar -->
+<!-- <app-admin-navbar></app-admin-navbar> -->
+<section class="vh-100" style="background-color: #efe8f3">
+  <div class="container py-3 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-5">Sign in</h3>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="typeEmailX-2">Adminid</label>&nbsp;
+              <i class="fa fa-user iconIn"></i>
+              <input
+                type="text"
+                [(ngModel)]="userId"
+                id="typeEmailX-2"
+                class="form-control form-control-md"
+                placeholder="Admin id"
+              />
+              <p *ngIf="errormsg == true" class="loginmsg text-danger">
+                *wrong admin id or password
+              </p>
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="typePasswordX-2">Password</label
+              >&nbsp;<i class="fa fa-lock iconIn"></i>
+              <input
+                type="password"
+                [(ngModel)]="pswrd"
+                id="typePasswordX-2"
+                class="form-control form-control-md"
+                placeholder="password"
+              />
+              <p *ngIf="errormsg == true" class="loginmsg text-danger">
+                *wrong admin id or password
+              </p>
+            </div>
+
+            <button
+              class="btn btn-primary btn-lg btn btn-primary btn-block mb-4"
+              (click)="loginCheck()"
+              type="submit"
+            >
+              Sign in
+            </button>
+
+            <hr class="my-4" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

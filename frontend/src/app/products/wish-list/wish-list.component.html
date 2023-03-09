@@ -1,0 +1,80 @@
+<!-- empty wishlist -->
+<ng-container *ngIf="wishList.length == 0">
+  <body style="background-color: rgb(249, 253, 255); height: 100vh">
+    <br />
+    <div class="container border border-primary">
+      <div class="row text-center">
+        <div class="col">
+          <img
+            class=""
+            src="https://cdn.dribbble.com/users/530801/screenshots/2357094/present.gif"
+            width="450px"
+          />
+          <h3 class="text-danger">Your wishlist is empty!</h3>
+          <h5
+            class="mb-4"
+            style="
+              color: rgb(9, 150, 226);
+              font-family: Georgia, 'Times New Roman', Times, serif;
+            "
+          >
+            seems like you don't have wishes here.<br />Make a wish!
+          </h5>
+          <a routerLink="/" class="btn btn-outline-primary mt-2">Shop Now</a>
+          <br />
+          <br />
+        </div>
+      </div>
+    </div>
+  </body>
+</ng-container>
+
+<ng-container *ngIf="wishList.length !== 0">
+  <section class="mt-2 container">
+    <h2 class="font-weight-bold pt-5">Wish List</h2>
+    <hr />
+  </section>
+
+  <section class="list-container p-5">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Product</th>
+          <th scope="col">Price</th>
+          <th></th>
+          <th></th>
+          <th scope="col">Remove Item</th>
+          <th scope="col">Add to Cart</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of wishList">
+          <td><img width="100px" [src]="product.image" alt="ff" /></td>
+          <td>
+            {{ product.title }} <br />
+            <strong>Brand:</strong> {{ product.brand }}
+          </td>
+          <td>{{ product.price | currency : "INR" }}</td>
+          <td></td>
+          <td></td>
+          <td>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a
+              class="btn btn-outline-danger"
+              (click)="removeitem(product)"
+              ><i class="fa-regular fa-trash-can"></i
+            ></a>
+          </td>
+          <td>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a
+              (click)="addToCart(product)"
+              class="btn btn-outline-success"
+              type="submit"
+              ><i class="fa-solid fa-cart-shopping"></i
+            ></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ng-container>

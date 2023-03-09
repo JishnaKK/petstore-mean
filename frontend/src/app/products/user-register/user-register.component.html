@@ -1,0 +1,101 @@
+<body>
+  <div class="form-container sign-up-form">
+    <div class="form-box sign-up-box">
+      <h2>Register</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="field">
+          <i class="fa-solid fa-user"></i>
+          <input
+            formControlName="fname"
+            name="fname"
+            type="text"
+            placeholder=" Firstname"
+            class="form-control"
+            required
+          />
+
+          <p
+            *ngIf="
+              this.registerForm.get('fname')?.touched &&
+              this.registerForm.get('fname')?.errors
+            "
+            style="color: red"
+          >
+            invalid input
+          </p>
+        </div>
+        <div class="field">
+          <i class="fa-solid fa-user"></i>
+          <input
+            formControlName="lname"
+            name="lname"
+            type="text"
+            placeholder=" Lastname"
+            class="form-control"
+            required
+          />
+          <p
+            *ngIf="
+              this.registerForm.get('lname')?.touched &&
+              this.registerForm.get('lname')?.errors
+            "
+            style="color: red"
+          >
+            invalid input
+          </p>
+        </div>
+        <div class="field">
+          <i class="fa-regular fa-at"></i>
+          <input
+            formControlName="email"
+            name="email"
+            type="email"
+            placeholder=" Email"
+            class="form-control"
+            required
+          />
+          <p
+            *ngIf="
+              this.registerForm.get('email')?.touched &&
+              this.registerForm.get('email')?.errors
+            "
+            style="color: red"
+          >
+            invalid input
+          </p>
+        </div>
+        <div class="field">
+          <i class="fa-solid fa-lock"></i>
+          <input
+            formControlName="pswd"
+            name="pswd"
+            type="password"
+            placeholder=" password"
+            class="form-control"
+            required
+          />
+          <p
+            *ngIf="
+              this.registerForm.get('pswd')?.touched &&
+              this.registerForm.get('pswd')?.errors
+            "
+            style="color: red"
+          >
+            must be 6 characters
+          </p>
+        </div>
+        <div class="btn">
+          <input type="submit" class="submit-btn" value="Create" />
+        </div>
+        <div>
+          <p>
+            Already have an account?
+            <a href="login" class="link-info" style="text-decoration: none"
+              >Login here <i class="fa fa-long-arrow-right"></i>
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,17 @@
+1.create angular project - ng new petstore
+2.run angular - ng s -o
+3.add bootstrap font awesome, google fonts
+4.Lazy loading-its a process of loading components and modules
+                it improves application load time speed
+                ng g m products --module app.module
+5.create a components should lazy loaded in the products module
+  -->all-products  - ng g c products/all-products
+  -->cart           -ng g c products/cart
+  -->wish-list &nbsp; -ng g c products/wish-list
+6.Desigining of the components
+7.Create angular services for api calling
+  ng g s products/api
+8. import HttpClientModule in products
+9.Integration
+10.search
+   ng g p products/pipes/filter

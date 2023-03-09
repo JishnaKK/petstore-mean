@@ -1,0 +1,115 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: rgb(249, 207, 231)"
+>
+  <div class="container px-5 px-lg-5">
+    <a class="navbar-brand" href="#!"
+      ><i class="fa-solid fa-paw" style="color: white"></i>&nbsp;&nbsp;<span
+        style="font-size: 25px; text-transform: capitalize; color: black"
+        >Petstore</span
+      >
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        <li class="nav-item">
+          <a
+            class="nav-link active text-dark"
+            aria-current="page"
+            routerLink="products"
+            >Home</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            *ngIf="!adminlog()"
+            class="nav-link text-dark"
+            routerLink="adminlogin"
+            >Admin</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            *ngIf="adminlog()"
+            class="nav-link text-dark"
+            (click)="adminlogout()"
+            routerLink=""
+            >Logout</a
+          >
+        </li>
+      </ul>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-between">
+          <div class="input-group d-flex" style="width: 530px">
+            <input
+              (keyup)="search($event)"
+              type="text"
+              class="form-control"
+              placeholder="search a product here"
+            />
+            <div>
+              <button class="btn btn--secondary text-light" type="button">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="loggedIn()">
+        <h6 class="mt-2">{{ user }}</h6>
+      </div>
+
+      <span>
+        <a class="btn text-dark" routerLink="products/wish-list" type="submit">
+          wishlist
+          <i class="fa-solid fa-heart" style="color: red"></i>
+        </a>
+      </span>
+
+      &nbsp;&nbsp;
+      <form class="d-flex">
+        <div *ngIf="!loggedIn()">
+          <button
+            class="btn btn-outline-light"
+            routerLink="products/login"
+            type="submit"
+          >
+            Login
+          </button>
+        </div>
+        <div *ngIf="loggedIn()">
+          <button
+            class="btn btn-outline-light"
+            (click)="onLogout()"
+            type="submit"
+          >
+            Logout
+          </button>
+        </div>
+
+        &nbsp;&nbsp;
+        <div>
+          <button routerLink="cart" class="btn btn-outline-light" type="button">
+            cart
+            <i class="bi-cart-fill me-1"></i>
+            <span class="badge bg-light rounded-pill text-dark">{{
+              totalItem
+            }}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,139 @@
+<!-- when cart is empty -->
+<ng-container *ngIf="carts.length==0">
+<section class="bg-light " style="height: 600px;">
+  <div class="container text-center bg-light" >
+    <div class="card bg-light "style="border: none;">
+      <h5 class="card-title mt-4">My Cart </h5>
+     <div class="center bg-light mt-4" >
+      <img src="https://mir-s3-cdn-cf.behance.net/projects/404/95974e121862329.Y3JvcCw5MjIsNzIxLDAsMTM5.png" alt="ss" >
+      <div>
+      <button routerLink="/" class="btn btn-secondary float-left">Shop Now</button>
+      </div>
+     </div>
+
+    </div>
+  </div>
+  </section>
+</ng-container >
+
+<ng-container *ngIf="carts.length!=0">
+  <section class="h-100 h-custom" style="background-color: #d2c9ff;">
+    <div class="container py-3 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                          <div class="pt-4">
+                        <h6 class="mb-0"><a href="" class="text-body"><i
+                              class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                      </div>
+                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+
+                      <h6 class="mb-0 text-muted">{{totalItem}} items</h6>
+                    </div>
+                    <hr class="my-4">
+
+                    <div class="row mb-4 d-flex justify-content-between align-items-center"*ngFor="let item of carts">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <img
+                          src="{{item.image}}"
+                          class="img-fluid rounded-3" alt="Cotton T-shirt">
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <h6 class="text-muted">{{item.brand}}</h6>
+                        <h6 class="text-black mb-0">{{item.title}}</h6>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                        <!-- <button class="btn btn-link px-2" (click)="decrementQuantity(item)">
+                          <i class="fas fa-minus"></i>
+                      </button> -->
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                          <p>{{item.quantity}}</p>
+                      </div>
+
+                        <!-- <input id="form1"  name="quantity" value= "{{item.quantity}}" type="number"
+                          class="form-control form-control-sm form-outline-none" /> -->
+
+                        <!-- <button class="btn btn-link px-2" (click)="incrementQuantity(item)">
+                          <i class="fas fa-plus"></i>
+                        </button> -->
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <h6 class="mb-0">{{(item.price * item.quantity)|currency:'INR'}} </h6>
+
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <a type="button" (click)="removeItemCart(item)" class="text-muted"><i class="fas fa-times"></i></a>
+                      </div>
+                    </div>
+
+                    <hr class="my-4">
+
+
+                    <div class="pt-4 ">
+                       <button type="button" class="btn btn-danger btn-block btn-md" (click)="removeAllItem()"
+                      data-mdb-ripple-color="white">Empty Cart </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 bg-grey">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between mb-4">
+                      <h6 class="text-uppercase">items  {{totalItem}}</h6>
+                      <h5>{{totalPrice|currency:'INR'}}</h5>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4">
+                      <h6 class="text-uppercase">Discount</h6>
+                      <h5>{{discount|currency:'INR'}}</h5>
+                    </div>
+
+                    <!-- <h5 class="text-uppercase mb-3">Shipping</h5>
+
+                    <div class="mb-4 pb-2">
+                      <select class="select">
+                        <option value="1">Standard-Delivery- €5.00</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                        <option value="4">Four</option>
+                      </select>
+                    </div> -->
+
+  <!--
+                    <h5 class="text-uppercase mb-3">Give code</h5> -->
+
+                    <!-- <div class="mb-5">
+                      <div class="form-outline">
+                        <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Examplea2">Enter your code</label>
+                      </div>
+                    </div> -->
+
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Total Amount</h5>
+                      <h5><strong>{{discountPrice|currency:'INR'}}</strong></h5>
+                    </div>
+
+                    <button (click)="checkOut()" type="button" class="btn btn-success btn-block btn-lg"
+                      data-mdb-ripple-color="dark">CheckOut</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</ng-container>

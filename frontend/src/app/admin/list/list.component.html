@@ -1,0 +1,212 @@
+<!-- <app-admin-navbar></app-admin-navbar> -->
+<body class="p-5">
+  <div class="card mb-4">
+    <div class="card-header">
+      <i class="fas fa-table me-1"></i>
+      ProductTable
+      <span class="d-flex justify-content-end">
+        <button
+          class="btn btn-success"
+          type="submit"
+          (click)="add()"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Addproduct
+        </button>
+        &nbsp; &nbsp; &nbsp;
+      </span>
+    </div>
+    <div class="card-body">
+      <table class="table mt-3">
+        <thead class="thead-dark bg-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">PRICE</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">BRAND</th>
+            <th scope="col">&nbsp;&nbsp;IMAGE</th>
+            <th scope="col">EDIT</th>
+            <th scope="col">DELETE</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of allProducts">
+          <tr>
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.title }}</td>
+            <td>{{ item.price | currency : "INR" }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.brand }}</td>
+            <td>
+              <img
+                style="width: 80px"
+                src="{{ item.image }}"
+                alt=""
+                srcset=""
+              />
+            </td>
+            <td>
+              &nbsp;&nbsp;<i
+                (click)="update(item)"
+                class="fa-solid fa-pen-to-square"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              ></i>
+            </td>
+            <td (click)="deleteProduct(item)">
+              &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-4 mb-5 h-100">
+          <form
+            (ngSubmit)="addProduct()"
+            (ngSubmit)="updateProduct()"
+            class="border border-dark p-3 mt-3"
+          >
+            <div class="row">
+              <h3 *ngIf="showadd" class="text-center text-capitalize">
+                Add newProduct details
+              </h3>
+
+              <h3 *ngIf="showupdate" class="text-center text-capitalize">
+                Update Product details
+              </h3>
+              <div class="col-md-6">
+                <div class="p-2">
+                  <input
+                    name="id"
+                    [(ngModel)]="id"
+                    type="text"
+                    class="form-control"
+                    placeholder="id"
+                  />
+                </div>
+                <div class="p-2">
+                  <input
+                    name="title"
+                    [(ngModel)]="title"
+                    type="text"
+                    class="form-control text-capitalize"
+                    placeholder="Product name"
+                  />
+                </div>
+                <div class="p-2">
+                  <input
+                    name="price"
+                    [(ngModel)]="price"
+                    type="number"
+                    class="form-control"
+                    placeholder="Product Price"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-2">
+                  <input
+                    name="description"
+                    [(ngModel)]="description"
+                    type="text"
+                    class="form-control"
+                    placeholder="description"
+                  />
+                </div>
+                <div class="p-2">
+                  <input
+                    name="brand"
+                    [(ngModel)]="brand"
+                    type="text"
+                    class="form-control"
+                    placeholder="Brand name"
+                  />
+                </div>
+                <div class="p-2">
+                  <input
+                    name="image"
+                    [(ngModel)]="image"
+                    type="text"
+                    class="form-control"
+                    placeholder="Product image"
+                  />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button *ngIf="showadd" type="submit" class="btn btn-primary">
+                  create Product
+                </button>
+                <button
+                  *ngIf="showupdate"
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <table class="table mt-3"  >
+  <thead class="thead-dark bg-light" >
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">TITLE</th>
+      <th scope="col">PRICE</th>
+      <th scope="col">DESCRIPTION</th>
+      <th scope="col">BRAND</th>
+      <th scope="col">IMAGE</th>
+      <th scope="col">EDIT</th>
+      <th scope="col">DELETE</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of allProducts">
+    <tr>
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.title}}</td>
+      <td>{{item.price|currency:'INR'}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.brand}}</td>
+      <td ><img style="width: 80px;" src="{{item.image}}" alt="" srcset=""></td>
+      <td><i class="fa-solid fa-pen-to-square"></i></td>
+      <td><i class="fa-solid fa-trash-can"></i></td>
+
+    </tr>
+  </tbody>
+</table> -->
