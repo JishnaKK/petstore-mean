@@ -1,6 +1,6 @@
 const mongoose =require('mongoose')
 
-mongoose.connect('mongodb://localhost:27017/cart',()=>{
+mongoose.connect('mongodb+srv://jishnakk:jishna8086@cluster0.4vycihm.mongodb.net/PETSTORE',()=>{
     console.log('mongo connected successfully');
 })
 
